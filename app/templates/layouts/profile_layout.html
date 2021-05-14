@@ -1,0 +1,29 @@
+{% extends "layouts/layout.html" %}
+
+	{% block carousel %}
+		<div class="container pt-3">
+			<div class="pfp-section">
+				<section class="">
+					<div class="row justify-content-lg-center align-items-center py-4">
+						{% if pfp %}
+							<div class="col-lg-auto col-md-1 col-sm-1">
+								<img  class="border border-4 border-light rounded-circle" src="{{ url_for('static', filename=pfp) }}" alt="" style="width: 12rem;">
+							</div>
+						{% else %}
+							<div class="col-lg-auto col-md-1 col-sm-1">
+								<img  class="border border-4 border-light rounded-circle" src="{{ url_for('static', filename='img/pfp/'+current_user.profile_pic) }}" alt="" style="width: 12rem;">
+							</div>
+						{% endif %}
+
+						<div class="col-lg-auto col-md-auto col-sm-auto">
+							<div class="row">
+								{% block user_data_row %}
+
+								{% endblock user_data_row %}
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	{% endblock carousel %}

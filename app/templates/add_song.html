@@ -1,0 +1,110 @@
+{% extends "profile_creator.html" %}
+
+{% block content %}
+	<div class="container pb-3">
+		<div class="pfp-content">
+			{% block pfp_content %}
+				<section class="p-5">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-sm-auto mx-auto">
+								<div class="card bg-secondary my-5">
+									
+									<div class="card-header">
+										<h3 class="card-title text-center">Agregar Cancion</h3>
+									</div>
+									<div class="card-body">
+										<form class="mx-5" method="POST" action="" enctype="multipart/form-data">
+											{{ form.hidden_tag() }}
+                                            <!-- COVER FIELD -->
+                                          	<div class="form-group py-3 mx-auto">
+												{{ form.song_cover.label(class="form-control-label mb-2") }}
+
+												{% if form.song_cover.errors %}
+													{{ form.song_cover(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.song_cover.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.song_cover(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- TITLE FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.song_title.label(class="form-control-label mb-2") }}
+
+												{% if form.song_title.errors %}
+													{{ form.song_title(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.song_title.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.song_title(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- GENRE FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.song_genre.label(class="form-control-label mb-2") }}
+												
+												{% if form.song_genre.errors %}
+													{{ form.song_genre(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.song_genre.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.song_genre(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- HOUSE_DISCOGRAPHIC FIELD -->
+                                            <div class="form-group py-3">
+												{{ form.disco.label(class="form-control-label mb-2") }}
+
+												{% if form.disco.errors %}
+													{{ form.disco(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.disco.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.disco(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- SONG FILE FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.save_song.label(class="form-control-label mb-2") }}
+												
+												{% if form.save_song.errors %}
+													{{ form.save_song(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.save_song.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.save_song(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- SUBMIT BUTTON -->
+											<div class="py-3 text-center">
+												{{ form.submit(class="btn btn-danger btn-lg") }}
+											</div>
+										</form>
+									</div>
+
+								</div>
+								
+							</div>
+						</div>
+					</div>	
+				</section>
+			{% endblock pfp_content %}
+		</div>
+	</div>
+{% endblock content %}

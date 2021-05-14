@@ -1,0 +1,75 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+	<section>
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-sm-7 col-md-7 col-lg-7 mx-auto">
+					<div class="card bg-secondary text-center">
+						<div class="card-body">
+							<h2 class="card-title pt-3">¡Iniciar Sesión!</h2>
+							<h5 class="fs-5 card-subtitle pb-3">Escucha cientos de tus canciones favoritas en un solo lugar.</h5>
+							<form method="POST" action="">
+								{{ form.hidden_tag() }}
+								<div class="container">
+									<div class="row">
+										<div class="col-md-11 mx-auto">
+											<!-- USERNAME FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.email.label(class="form-control-label mb-2") }}
+
+												{% if form.email.errors %}
+													{{ form.email(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.email.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.email(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- PASSWORD FIELD -->
+											<div class="form-group py-3">
+												{{ form.password.label(class="form-control-label mb-2") }}
+
+												{% if form.password.errors %}
+													{{ form.password(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.password.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.password(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- REMEMBER MEEE -->
+											<div class="form-check form-switch text-start mx-4 py-3">
+												{{ form.remember_me(class="form-check-input") }}
+												{{ form.remember_me.label(class="form-check-label") }}
+											</div>
+											<!-- SUBMIT BUTTON -->
+											<div class="form-group py-3">
+												<div class="row">
+													<div class="col-sm-6 col-md-6 d-grid gap-2 mx-auto">
+														{{ form.submit(class="btn btn-dark btn-lg") }}
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<div class="card-footer">
+								<a href="#" class="d-block text-light py-1">¿Has olvidado la contraseña?</a>
+								<a href="{{ url_for('users.register') }}" class="d-block text-light py-1">¿No tienes cuenta? ¡Registrate ahora!</a>
+								<a href="{{ url_for('c_creator.register_creator') }}" class="d-block text-light py-1">¿Eres músico? ¡Registrate ahora!</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content%}

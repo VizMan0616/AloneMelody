@@ -1,0 +1,147 @@
+{% extends "layouts/profile_layout.html" %}
+
+{% block user_data_row %}
+	<div class="col-lg-12 pb-3">
+		<h1 class="card-title fw-bolder text-capitalize d-block">{{ current_user.username_c }}</h1>
+		<!--<h5 class="card-subtitle text-capitalize fw-light d-block">{{ current_user.creator_name }}</h5>-->
+	</div>
+	<div class="col-lg-auto col-md-auto col-sm-auto pb-4">
+		<div class="badge bg-purple">
+			<p class="card-text fs-5 fw-normal">{{ current_user.creation_date.strftime('%d/%m/%Y') }}</p>
+		</div>
+	</div>
+
+	<div class="col-lg-auto col-md-auto col-sm-auto pb-4">
+		<div class="badge bg-purple">
+			<p class="card-text fs-5 fw-normal">{{ current_user.record_house }}</p>
+		</div>
+	</div>
+	</div>
+
+	<div class="col-lg-3 col-md-3 col-sm-3 d-grid pb-4">
+		<a href="{{ url_for('c_creator.add_song') }}" class="btn btn-danger">Agregar Cancion</a>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-3 d-grid pb-4">
+		<a href="{{ url_for('c_creator.song_view') }}" class="btn btn-danger">Ver Canciones</a>
+	</div>
+{% endblock user_data_row %}
+
+{% block content %}
+	<div class="container pb-3">
+		<div class="pfp-content">
+			{% block pfp_content %}
+				<section class="text-center p-5">
+					<div class="container pt-3">
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-sm-auto mx-auto">
+								<div class="description-title">
+									<h3 class="fw-bold text-capitalize py-3">{{ current_user.creator_name }}</h3>
+								</div>
+								<p class="fs-4 fw-light pt-3">{{ current_user.description }}</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="p-5">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-sm-auto mx-auto">
+								<div class="card bg-secondary">
+									
+									<div class="card-header">
+										<h3 class="card-title text-center">Actualizar Info.</h3>
+									</div>
+									<div class="card-body">
+										<form class="mx-5" method="POST" action="" enctype="multipart/form-data">
+											{{ form.hidden_tag() }}
+											<!-- USERNAME FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.username.label(class="form-control-label mb-2") }}
+
+												{% if form.username.errors %}
+													{{ form.username(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.username.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.username(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<div class="form-group py-3 mx-auto">
+												{{ form.disco.label(class="form-control-label mb-2") }}
+
+												{% if form.disco.errors %}
+													{{ form.disco(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.disco.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.disco(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- EMAIL FIELD -->
+											<div class="form-group py-3 mx-auto">
+												{{ form.email.label(class="form-control-label mb-2") }}
+												
+												{% if form.email.errors %}
+													{{ form.email(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.email.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.email(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- PFP FIELD -->
+											<div class="form-group py-3">
+												{{ form.pfp.label(class="form-control-label mb-2") }}
+
+												{% if form.pfp.errors %}
+													{{ form.pfp(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.pfp.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.pfp(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- DESCRIPTION FIELD -->
+											<div class="form-group py-3">
+												{{ form.description.label(class="form-control-label mb-2") }}
+
+												{% if form.description.errors %}
+													{{ form.description(class="form-control is-invalid") }}
+													<div class="invalid-feedback">
+														{% for error in form.description.errors %}
+															<span>{{ error }}</span>
+														{% endfor%}
+													</div>
+												{% else %}
+													{{ form.description(class="form-control bg-secondary text-light") }}
+												{% endif %}
+											</div>
+											<!-- SUBMIT BUTTON -->
+											<div class="py-3 text-center">
+												{{ form.submit(class="btn btn-danger btn-lg") }}
+											</div>
+										  </form>
+									</div>
+
+								</div>
+								
+							</div>
+						</div>
+					</div>	
+				</section>
+			{% endblock pfp_content %}
+		</div>
+	</div>
+{% endblock content %}

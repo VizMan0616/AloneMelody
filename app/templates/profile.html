@@ -1,0 +1,106 @@
+{% extends "layouts/profile_layout.html" %}
+
+
+{% block user_data_row %}
+	<div class="col-lg-12 pb-3">
+		<h1 class="card-title fw-bolder text-capitalize d-block">{{ current_user.username }}</h1>
+		<h5 class="card-subtitle text-capitalize fw-light d-block">{{ current_user.name }}</h5>
+	</div>
+	<div class="col-lg-auto col-md-auto col-sm-auto">
+		<div class="badge bg-purple">
+			<h3 class="card-subtitle fw-normal">{{ current_user.date.strftime('%d/%m/%Y') }}</h3>
+		</div>
+	</div>
+	<div class="col-lg-auto col-md-auto col-sm-auto">
+		<div class="badge bg-purple">
+			<h3 class="card-subtitle fw-normal">{{ current_user.sex }}</h3>
+		</div>
+	</div>
+{% endblock user_data_row %}
+
+{% block content %}
+		<div class="container pb-3">
+			<div class="pfp-content">
+				<section class="p-5">
+					<div class="card bg-secondary">
+						<div class="card-header">
+							<h3 class="card-title text-center">Actualizar Info.</h3>
+						</div>
+						<div class="card-body">
+							<form class="mx-5" method="POST" action="" enctype="multipart/form-data">
+								{{ form.hidden_tag() }}
+								<div class="container">
+									{{ form.hidden_tag() }}
+									<!-- USERNAME FIELD -->
+									<div class="form-group py-3 mx-auto">
+										{{ form.username.label(class="form-control-label mb-2") }}
+
+										{% if form.username.errors %}
+											{{ form.username(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.username.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.username(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- EMAIL FIELD -->
+									<div class="form-group py-3 mx-auto">
+										{{ form.email.label(class="form-control-label mb-2") }}
+
+										{% if form.email.errors %}
+											{{ form.email(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.email.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.email(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- NAME FIELD -->
+									<div class="form-group py-3 mx-auto">
+										{{ form.full_name.label(class="form-control-label mb-2") }}
+
+										{% if form.full_name.errors %}
+											{{ form.full_name(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.full_name.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.full_name(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- NAME FIELD -->
+									<div class="form-group py-3 mx-auto">
+										{{ form.pfp.label(class="form-control-label mb-2") }}
+
+										{% if form.pfp.errors %}
+											{{ form.pfp(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.pfp.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.pfp(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- SUBMIT BUTTON -->
+									<div class="py-3 text-center">
+										{{ form.submit(class="btn btn-danger btn-lg") }}
+									</div>
+								</div>
+							</form>
+						</div>
+						</div>
+					
+				</section>
+			</div>
+		</div>
+{% endblock content %}

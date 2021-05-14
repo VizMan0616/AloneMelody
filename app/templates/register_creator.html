@@ -1,0 +1,138 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+	<section>
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-lg-9 mx-auto">
+					<div class="card bg-secondary text-center">
+						<div class="card-body">
+							<h2 class="card-title pt-2">¡Únete hoy!</h2>
+							<h5 class="fs-5 card-subtitle pb-3">¡Muestra tu talento musical a cientos de personas en todo el mundo!</h5>
+							<div class="container">
+								<form method="POST" action="" class="row">
+									{{ form.hidden_tag() }}
+									<!-- USERNAME FIELD -->
+									<div class="col-md-6 py-3 mx-auto">
+										{{ form.username.label(class="form-control-label mb-2") }}
+
+										{% if form.username.errors %}
+											{{ form.username(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.username.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.username(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- FULL NAME FIELD -->
+									<div class="col-md-6 py-3">
+										{{ form.full_name.label(class="form-control-label mb-2") }}
+
+										{% if form.full_name.errors %}
+											{{ form.full_name(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.full_name.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.full_name(class="form-control bg-secondary bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!--CREATION DISCOGRAPHY-->
+									<div class="col-md-6 py-3">
+										{{ form.disco.label(class="form-control-label mb-2") }}
+
+										{% if form.disco.errors %}
+											{{ form.disco(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.disco.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.disco(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									
+									<!-- EMAIL FIELD-->
+									<div class="col-md-6 py-3">
+										{{ form.email.label(class="form-control-label mb-2") }}
+
+										{% if form.email.errors %}
+											{{ form.email(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.email.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.email(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- PASSWORD FIELD -->
+									<div class="col-md-6 py-3">
+										{{ form.password.label(class="form-control-label mb-2") }}
+
+										{% if form.password.errors %}
+											{{ form.password(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.password.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.password(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- CONFIRM PASSWORD FIELD -->
+									<div class="col-md-6 py-3">
+										{{ form.cfrm_password.label(class="form-control-label mb-2") }}
+
+										{% if form.cfrm_password.errors %}
+											{{ form.cfrm_password(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.cfrm_password.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.cfrm_password(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>
+									<!-- CREATION DATE FIELD -->
+									<div class="col-md-6 offset-3 py-3">
+										{{ form.creation_date.label(class="form-control-label mb-2") }}
+
+										{% if form.creation_date.errors %}
+											{{ form.creation_date(class="form-control is-invalid") }}
+											<div class="invalid-feedback">
+												{% for error in form.creation_date.errors %}
+													<span>{{ error }}</span>
+												{% endfor%}
+											</div>
+										{% else %}
+											{{ form.creation_date(class="form-control bg-secondary text-light") }}
+										{% endif %}
+									</div>			
+									
+															
+									<!-- SUBMIT BUTTON -->
+									<div class="col-md-12 py-3 text-center">
+										{{ form.submit(class="btn btn-dark btn-lg") }}
+									</div>
+								</form>
+							</div>
+							<div class="card-footer">
+								<a href="{{ url_for('home.login') }}" class="d-block text-light py-1">¿Ya tienes cuenta? ¡Inicia Sesión ahora!</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content%}

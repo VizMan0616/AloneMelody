@@ -1,0 +1,86 @@
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+	<div class="container pt-3">
+		<section class="card bg-gray p-3" aria-label="{{ songs_len }}">
+			<audio id="ap" autoplay='autoplay' aria-valuenow="false"></audio>
+			
+				<div class="row g-1">
+					{% for song in songs %}
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="card bg-secondary">
+							  <div class="card-header row">
+							  	<h5 class="card-text fw-bold fst-italic col">{{ song.song_title }}</h5>
+							    
+							    {% if current_user.id == song.uploader.id %}
+							    	<button type="button" id="playBtn-{{ song.id }}" class="btn btn-dark btn-sm text-center rounded-pill col-1 mx-3" data-bs-toggle="modal" data-bs-target="#playerModal" aria-label="{{url_for('static', filename='music/'+song.uploader.id+'/'+song.song_title.replace(' ', '')+'.mp3') }}">
+							    		<i class="far fa-caret-square-right"></i>
+							    	</button>
+							    	<a href="{{ url_for('home.delete_song', id=song.id) }}" class="btn btn-danger btn-sm text-center rounded-pill col-3">
+							    		<i class="fas fa-trash"></i>
+							    	</a>
+							    {% else %}
+							    	<button type="button" id="playBtn-{{ song.id }}" class="btn btn-danger btn-sm text-center rounded-pill col-2" data-bs-toggle="modal" data-bs-target="#playerModal-{{song.id}}" aria-label="{{url_for('static', filename='music/'+song.uploader.id+'/'+song.song_title.replace(' ', '')+'.mp3') }}">
+							    		<i class="fas fa-trash"></i>
+							    	</button>	
+							    {% endif %}
+							  </div>
+							  <div class="card-body">
+							  	<p class="card-title fw-bold">Artista: {{ song.uploader.creator_name }}</p>
+							    <p class="card-subtitle">Fecha de subida: {{ song.song_posted }}</p>
+							    <p class="card-subtitle">Genero: {{ song.genre }}</p>
+							    <p class="card-subtitle">Discografica: {{ song.disco }}</p>
+							  </div>
+							</div>	
+						</div>
+					{% endfor %}
+				</div>	
+			
+			<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="songLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title text-dark" id="songLabel"></h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeStop"></button>
+			      </div>
+			      <div class="modal-body">
+			         
+						  <div class="progress">
+						 	<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="progressBarr" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style=""></div>
+						 	<!--<progress class="progress-bar" id="seekbar" value="0" max="1" style="width:400px;"></progress>-->
+						 </div>
+						 <div class="container">       
+						<div class="row ms-3 pt-3">
+        
+  						<div class="col-sm-auto">
+   						 	<button class="btn btn-danger" id="playPause"><span class="text-light text-start" id="showTime">00:00</span></button>
+ 						 </div>
+						  <div class="col-sm-auto">
+  							  <input type="range" id="rangeInput" class="form-range" value="0.5" min="0" max="1" step="0.01">
+ 						  </div>
+				              <!--<div class="col-sm">
+				                <button class="btn btn-danger" >Aumentar el Volumen</button>
+				              </div>
+				              
+				              <div class="col-sm">
+				                <button class="btn btn-danger" onclick="document.getElementById('demo').volume-=0.1">Disminuir el Volumen</button>
+				              </div>-->
+		              
+		           	  </div>
+		        	</div>      
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</section>
+	</div>
+{% endblock content %}
+
+<!--<script type="text/javascript">
+	$('#playBtn').click(function(){
+	$('#playerModal').play()
+});
+</script>-->
