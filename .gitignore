@@ -1,0 +1,12 @@
+AloneMelody.wpr
+app/__pycache__/
+app/content_creator/__pycache__/
+app/home/__pycache__/
+app/static/img/cover/
+app/static/img/girl-music.jpg
+app/static/img/pfp/
+app/static/music/
+app/test.db
+app/users/__pycache__/
+requirements.txt
+venv/
